@@ -1435,14 +1435,13 @@ btn("treadmobile", function()
 	local RightHip=getJoint("Right Hip")
 	local LeftHip=getJoint("Left Hip")
 	local Neck=getJoint("Neck")
-	local treadmobile = getPartFromMesh(4753434608,4753426213)
+	local treadmobileID = getPartFromMesh(4753434608,4753426213)
 	local treadmobile = getPartJoint(treadmobileID)
 
 	addmode("default", {
 		idle = function()
 			local rY, lY = raycastlegs()
 
-			local Ychg=velYchg()/20
 
 			LeftHip.C0=LeftHip.C0:Lerp(cf(-1,-1-0.1*sin(sine*20),0)*angles(0,-1.5707963267948966,0),deltaTime) 
 			treadmobile.C0=treadmobile.C0:Lerp(cf(0,0.5+0.1*sin(sine*20),-1)*angles(-2.9670597283903604,0,-3.141592653589793),deltaTime) 
@@ -1455,11 +1454,8 @@ btn("treadmobile", function()
 		walk = function()
 			local Vfw, Vrt = velbycfrvec()
 
-			local rY, lY = raycastlegs()
 
-			local Ychg=velYchg()/20
-
-			eftHip.C0=LeftHip.C0:Lerp(cf(-1,-1-0.1*sin(sine*20),0)*angles(-2.0943951023931953*sin(sine*20),-1.5707963267948966,0),deltaTime) 
+			LeftHip.C0=LeftHip.C0:Lerp(cf(-1,-1-0.1*sin(sine*20),0)*angles(-2.0943951023931953*sin(sine*20),-1.5707963267948966,0),deltaTime) 
 			treadmobile.C0=treadmobile.C0:Lerp(cf(0,0.5+0.1*sin(sine*20),-1)*angles(-2.792526803190927,0,-3.141592653589793),deltaTime) 
 			RootJoint.C0=RootJoint.C0:Lerp(cf(0,0.1 * sin(sine*20),0)*angles(-1.9198621771937625,0,3.141592653589793),deltaTime) 
 			LeftShoulder.C0=LeftShoulder.C0:Lerp(cf(-1.5,0.9+0.1*sin(sine*20),-0.5)*angles(1.5707963267948966,0,0),deltaTime) 
@@ -1468,7 +1464,7 @@ btn("treadmobile", function()
 			RightShoulder.C0=RightShoulder.C0:Lerp(cf(1.5,0.9+0.1*sin(sine*20),-0.5)*angles(1.5707963267948966,0,0),deltaTime) 
 		end,
 		jump = function()
-			velYchg()
+
 			LeftHip.C0=LeftHip.C0:Lerp(cf(-1,-1,0)*angles(-0.3490658503988659,-1.5707963267948966,0),deltaTime) 
 			treadmobile.C0=treadmobile.C0:Lerp(cf(0,5.5,-1)*angles(1.5707963267948966,0,-3.141592653589793),deltaTime) 
 			RootJoint.C0=RootJoint.C0:Lerp(cf(0,5,0)*angles(0,0,3.141592653589793),deltaTime) 
@@ -1478,7 +1474,7 @@ btn("treadmobile", function()
 			RightShoulder.C0=RightShoulder.C0:Lerp(cf(1.5,1,0.5)*angles(3.141592653589793,0,-0.5235987755982988),deltaTime) 
 		end,
 		fall = function()
-			velYchg()
+			
 			local Vfw, Vrt = velbycfrvec()
 			RootJoint.C0 = RootJoint.C0:Lerp(cf(0, 0, 0) * angles(-1.6580627893946132 + Vfw * 0.1, Vrt * -0.05, -3.141592653589793), deltaTime)
 			RightShoulder.C0 = RightShoulder.C0:Lerp(cf(1, 0.5, 0) * angles(4.014257279586958 - 0.08726646259971647 * sin((sine + 0.5) * 4), 1.7453292519943295 + 0.08726646259971647 * sin((sine + 0.25) * 4), -1.5707963267948966), deltaTime)
@@ -1491,10 +1487,6 @@ btn("treadmobile", function()
 	})
 	addmode("e", {
 		walk = function()
-			local Ychg=velYchg()/20
-			local Vfw, Vrt = velbycfrvec()
-
-			local rY, lY = raycastlegs()
 
 			LeftShoulder.C0=LeftShoulder.C0:Lerp(cf(-1.5,1.5,0.5)*angles(-3.141592653589793,0,-1.5707963267948966+1.2217304763960306*sin(sine*5)),deltaTime) 
 			RightHip.C0=RightHip.C0:Lerp(cf(1,-1,0)*angles(0,1.5707963267948966,0),deltaTime) 
@@ -1503,7 +1495,9 @@ btn("treadmobile", function()
 			LeftHip.C0=LeftHip.C0:Lerp(cf(-1,-1,0)*angles(0,-1.5707963267948966,0),deltaTime) 
 			RightShoulder.C0=RightShoulder.C0:Lerp(cf(1.5,1.5,0.5)*angles(3.141592653589793,0,1.5707963267948966-1.2217304763960306*sin(sine*5)),deltaTime) 
 			RootJoint.C0=RootJoint.C0:Lerp(cf(0,-2.1,0)*angles(-3.141592653589793,0,3.141592653589793),deltaTime) 
-		end
+		end})
+end)
+
 		
 
 btn("empty reanimate (no animations)", reanimate)
